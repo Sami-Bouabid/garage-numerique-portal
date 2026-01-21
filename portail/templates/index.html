@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered is-size-2 mb-6 main-title" style="color: #367588">Nos Ressources</h1>
+        {# Conteneur pour les barres de recherche, filtre et tri - Structure Bulma pour l'alignement #}
+        <div class="columns is-multiline is-centered mb-6">
+            <div class="column is-full"> {# Une seule colonne pleine largeur pour contenir les contrôles groupés #}
+                <div class="field is-grouped is-grouped-centered">
+                    <p class="control is-expanded"> {# is-expanded permet à la recherche de prendre plus de place #}
+                        <input class="input" type="text" placeholder="Rechercher par titre ou description..." id="searchInput">
+                    </p>
+                    <p class="control">
+                        <div class="select">
+                            <select id="subjectsFilter">
+                                <option value="">Toutes les catégories</option>
+                                {# Les options de catégorie seront ajoutées dynamiquement par JavaScript #}
+                            </select>
+                        </div>
+                    </p>
+                    <p class="control">
+                        <div class="select">
+                            <select id="sortOrder">
+                                <option value="none">Pas de tri</option>
+                                <option value="asc">A - Z</option>
+                                <option value="desc">Z - A</option>
+                            </select>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {# Conteneur des cartes - ID cardsContainer est sur le div.columns qui contient les cartes #}
+        <div class="columns is-multiline is-centered" id="cardsContainer">
+            {# Les cartes seront générées ici par Flask ou manipulées par JavaScript #}
+            {% for carte in cartes %}
+            {# Utilisation de resource_slug pour le lien, généré à partir du titre de la carte #}
+            <div class="column is-one-third-desktop is-half-tablet is-full-mobile">
+                <a href="{{ url_for('portail.resource_detail', resource_slug=carte.title|slug) }}" class="card-link">
+                    <div class="card resource-card"
+                        data-title="{{ carte.title }}"
+                        data-short_desc="{{ carte.short_desc }}"
+                        data-icon="{{ carte.icon }}"
+                        data-subjects="{{ carte.subjects }}"> {# S'assure que les data-attributes sont cohérents #}
+
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="{{ carte.icon }}" alt="{{ carte.title }}">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <p class="title is-4 has-text-black">{{ carte.title }}</p>
+                                    {# Affichage des sujets, gérant les listes ou une seule valeur #}
+                                    {% if carte.subjects is iterable and carte.subjects is not string %}
+                                        {% for subject in carte.subjects %}
+                                            <p class="subtitle is-6 has-text-grey">{{ subject }}</p> {# Utilisation de has-text-grey pour la cohérence #}
+                                        {% endfor %}
+                                    {% else %}
+                                        <p class="subtitle is-6 has-text-grey">{{ carte.subjects }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="content">
+                                {{ carte.short_desc }} {# short_desc pour la description courte de la carte #}
+                            </div>
+                        </div>
+                        {# La section footer a été supprimée #}
+                    </div>
+                </a> {# FIN de la balise <a> #}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

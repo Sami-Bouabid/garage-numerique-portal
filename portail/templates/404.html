@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="section">
+  <div class="container has-text-centered">
+    <div class="box" style="max-width: 600px; margin: auto;">
+      <h1 class="title is-1 has-text-danger">404</h1>
+      <h2 class="subtitle is-4">Page introuvable</h2>
+      <p class="mb-5">
+        Oups ! La page que vous recherchez n'existe pas ou a été déplacée.
+      </p>
+      <a href="{{ url_for('portail.index') }}" class="button is-link is-medium">
+        Retour à l'accueil
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

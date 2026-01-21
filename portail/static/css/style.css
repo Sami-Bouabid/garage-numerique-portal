@@ -1,0 +1,446 @@
+/* Import de la police Inter et Bulma */
+@import "https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css";
+
+/* Définition de variables CSS pour la couleur teal */
+:root {
+    --bulma-teal: #367588;
+    --bulma-teal-hover: #367855;
+    --navbar-light-bg: white;
+    --navbar-light-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --footer-light-bg: white;
+    --footer-light-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    --modal-success-border: var(--bulma-teal);
+    --modal-danger-border: #f14668;
+    --modal-text-color-light: #4a4a4a;
+    --modal-text-color-dark: #fff;
+}
+
+/* Universal box-sizing for consistency */
+html, body, * {
+    box-sizing: border-box;
+}
+
+/* Styles généraux du corps de la page */
+body {
+    min-height: 100vh;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Règles de mode clair (par défaut) --- */
+body.light-mode {
+    background-color: #f0f2f5;
+    color: #4a4a4a;
+}
+
+body.light-mode .navbar.has-background-grey-lighter,
+body.light-mode .footer.has-background-grey-lighter {
+    background-color: var(--navbar-light-bg) !important;
+    box-shadow: var(--navbar-light-shadow);
+}
+
+body.light-mode .navbar-item,
+body.light-mode .has-text-primary {
+    color: #fff !important; /* Cette règle semble générale et pourrait être surchargée si des éléments spécifiques sont censés être foncés en mode clair */
+}
+
+body.light-mode .input,
+body.light-mode .select select,
+body.light-mode .resource-card {
+    background-color: white;
+    color: #4a4a4a;
+    border-color: #dbdbdb;
+}
+
+body.light-mode #toggleDarkMode {
+    background-color: #f0f0f0 !important;
+    color: #4a4a4a !important;
+    border: 1px solid #d0d0d0 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode #toggleDarkMode:hover {
+    background-color: #e8e8e8 !important;
+}
+
+/* --- Règles de mode sombre --- */
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+body.dark-mode .resource-card,
+body.dark-mode input,
+body.dark-mode select {
+    background-color: #2a2a2a;
+    color: white;
+    border: 1px solid #444;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode a,
+body.dark-mode .title,
+body.dark-mode .subtitle {
+    color: #fff !important;
+}
+
+body.dark-mode .navbar.has-background-grey-lighter,
+body.dark-mode .footer.has-background-grey-lighter {
+    background-color: #1f1f1f !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .has-text-black {
+    color: white !important;
+}
+
+body.dark-mode #toggleDarkMode {
+    background-color: #3a3a3a !important;
+    color: white !important;
+    border: 1px solid #666 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode #toggleDarkMode:hover {
+    background-color: #505050 !important;
+}
+
+/* Forcer les variantes "light" à s'assombrir quand <body> a la classe .dark-mode */
+body.dark-mode .button.is-light,
+body.dark-mode .tag.is-light {
+    background-color: #3a3a3a;
+    color: #fff;
+    border-color: transparent;
+}
+
+body.dark-mode .button.is-light:hover {
+    background-color: #505050;
+}
+
+body.dark-mode .tag.is-info.is-light {
+    background-color: rgba(96, 181, 228, 0.15);
+    color: #61c0ff;
+}
+
+/* --- Règles de la Navbar --- */
+.navbar {
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-item img {
+    max-height: 2.5rem;
+    height: auto;
+    margin-right: 0.5rem;
+}
+
+.navbar-item {
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+body.light-mode .navbar-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+
+body.dark-mode .navbar-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+/* --- DÉBUT DES MODIFICATIONS POUR LE LOGO DU GARAGE (#logoNavbar) --- */
+body.light-mode #logoNavbar:hover,
+body.dark-mode #logoNavbar:hover {
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+#logoNavbar img {
+    transition: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+}
+
+/* --- FIN DES MODIFICATIONS POUR LE LOGO DU GARAGE --- */
+
+.navbar-burger {
+    /* Géré par Bulma pour le mode mobile, mais s'assurer qu'il est visible si nécessaire */
+    display: block; /* S'assurer qu'il est visible pour le burger Bulma */
+}
+
+.navbar-menu {
+    display: flex;
+    flex-grow: 1; /* Prend l'espace disponible */
+    justify-content: space-between;
+    align-items: center; /* Centre verticalement le contenu de la navbar */
+}
+
+.navbar-start,
+.navbar-end {
+    display: flex; /* Assure que navbar-end est un conteneur flex */
+    align-items: center; /* Centre verticalement les éléments à l'intérieur */
+}
+
+/* Le positionnement du bouton est géré par le flexbox de .navbar-end */
+
+/* --- Titres et Sections --- */
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.section {
+    flex-grow: 1;
+    --bulma-section-padding: 2rem;
+}
+
+/* --- Footer (section dupliquée, la garder en bas pour la cohérence) --- */
+/* NOTE: Il y avait une section 'Footer' plus haut qui était dupliquée. J'ai gardé celle-ci car elle semble être la version finale. */
+.footer {
+    padding: 2rem 1.5rem;
+    margin-top: auto;
+    text-align: center;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.light-mode .footer a {
+    color: #4a4a4a; /* Liens du footer en mode clair */
+}
+
+body.dark-mode .footer a {
+    color: #f5f5f5; /* Liens du footer en mode sombre */
+}
+
+.footer a:hover {
+    color: #ffd700;
+}
+
+.content {
+    text-align: center; /* Ceci peut être un style général pour .content, à confirmer si cela ne casse pas d'autres mises en page */
+}
+
+/* --- Styles spécifiques à index.html (adaptés) --- */
+/* NOTE: La section 'filtres-container' était dupliquée. J'ai gardé celle-ci car elle semble être la version finale. */
+.filtres-container {
+    /* Ces propriétés sont gérées par les classes Bulma 'columns is-multiline is-centered' dans le HTML */
+    /* Nous ajoutons juste un gap et nous assurons que les colonnes internes sont centrées */
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    justify-content: center; /* Assure le centrage des colonnes de filtre */
+}
+
+.filtre {
+    /* La largeur des colonnes est gérée par Bulma (.column is-one-third-desktop etc.) */
+    display: flex;
+    flex-direction: column;
+}
+
+#searchInput { /* Ancien #barreRecherche */
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.filtre label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.select select { /* Cible le select à l'intérieur de la classe Bulma .select */
+    width: 100%;
+    padding: 0.5rem;
+}
+
+#cardsContainer { /* Ancien #container-carte */
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+/* Styles pour les cartes de ressources (renommé de .carte à .resource-card) */
+.resource-card {
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.resource-card:hover {
+    transform: translateY(-7px);
+    border: 1px solid #859ef0;
+}
+
+.resource-card .card-image {
+    margin-bottom: 1rem;
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.resource-card .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.resource-card .subtitle.is-6 {
+    display: inline-block;
+    background-color: var(--bulma-teal);
+    color: white;
+    padding: 0.25em 0.75em;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+.card-footer-item.button.is-primary,
+.card-footer-item.button.is-link,
+.card-footer-item.button.is-danger,
+.card-footer-item.button.is-info {
+    background-color: var(--bulma-teal) !important;
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+    border: none !important;
+    flex-grow: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-footer-item.button.is-primary:hover,
+.card-footer-item.button.is-link:hover,
+.card-footer-item.button.is-danger:hover,
+.card-footer-item.button.is-info:hover {
+    background-color: var(--bulma-teal-hover) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.resource-card .card-footer {
+    border-top: none !important;
+}
+
+.card-footer-item.button:not(:last-child) {
+    margin-right: 0.5rem;
+}
+
+/* --- Règles pour les modales --- */
+.modal-card {
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background-color: white;
+}
+
+.modal-card-head {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding: 1.5rem;
+    background-color: white;
+    color: var(--modal-text-color-light);
+    border-bottom: none;
+    position: relative;
+}
+
+.modal-card-head.is-success::before,
+.modal-card-head.is-danger::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.modal-card-head.is-success::before {
+    background-color: var(--modal-success-border);
+}
+
+.modal-card-head.is-danger::before {
+    background-color: var(--modal-danger-border);
+}
+
+.modal-card-body {
+    padding: 1.5rem;
+    background-color: white;
+    color: var(--modal-text-color-light);
+}
+
+.modal-card-foot {
+    background-color: white;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    padding: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+/* --- Règles de mode sombre pour les modales --- */
+body.dark-mode .modal-card {
+    background-color: #2a2a2a !important;
+    border: 1px solid #444;
+}
+
+body.dark-mode .modal-card-title,
+body.dark-mode .modal-card-body p {
+    color: var(--modal-text-color-dark) !important;
+}
+
+body.dark-mode .modal-card-head {
+    background-color: #2a2a2a !important;
+    color: var(--modal-text-color-dark) !important;
+}
+
+body.dark-mode .modal-card-head .modal-card-title {
+    color: white !important;
+}
+
+body.dark-mode .modal-card-body {
+    background-color: #2a2a2a !important;
+    color: var(--modal-text-color-dark) !important;
+}
+
+body.dark-mode .modal-card-foot {
+    background-color: #2a2a2a !important;
+    border-top: 1px solid #444;
+}
+
+body.dark-mode .modal-card-foot .button.is-light {
+    background-color: #3a3a3a !important;
+    color: #fff !important;
+}
+
+/* Force le titre de la modale en noir en mode clair */
+body.light-mode .modal-card-title {
+    color: black !important;
+}

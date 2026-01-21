@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> {% block title %}Mon Portail{% endblock %} </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo.svg') }}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="is-flex is-flex-direction-column light-mode" style="min-height: 100vh;">
+
+<header>
+  <nav class="navbar has-background-grey-lighter" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" id="logoNavbar" href="/">
+          <img id="logo"
+               src="{{ url_for('static', filename='img/garagenumeriquetransparent.png') }}"
+               data-light-src="{{ url_for('static', filename='img/garagenumeriquetransparent.png') }}"
+               data-dark-src="{{ url_for('static', filename='img/garagenumeriqueblanctransparent.png') }}"
+               alt="Logo">
+        </a>
+      </div>
+
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <button id="toggleDarkMode" class="button is-small darkmode-toggle">🌙</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+<main class="section">
+    <div class="container">
+        {% block content %}
+           {# Le contenu spécifique à chaque page sera inséré ici #}
+        {% endblock %}
+    </div>
+</main>
+
+<footer class="footer has-background-grey-lighter">
+    <div class="content">
+        <p class="has-text-black">&copy; 2025 - Mon Portail Web</p>
+    </div>
+</footer>
+
+{% block scripts %}
+    <script type="module" src="{{ url_for('static', filename='js/darkmode.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/modal.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/search.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/sort.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}
+
+</body>
+</html>
