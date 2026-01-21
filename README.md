@@ -88,7 +88,7 @@ Communication Technique : Coordination sur l'architecture des Blueprints pour pe
     `http://127.0.0.1:5000/` pour visualiser l'application dans votre navigateur.
 
 
-📄 Licence
+## 📄 Licence
 
 Distribué sous licence MIT. En soutien aux Logiciels Libres.
     
