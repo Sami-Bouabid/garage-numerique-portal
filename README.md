@@ -58,10 +58,6 @@ GitFlow : Utilisation rigoureuse de branches et de Pull Requests pour éviter le
 
 Communication Technique : Coordination sur l'architecture des Blueprints pour permettre un développement parallèle.
 
-📄 Licence
-
-Distribué sous licence MIT. En soutien aux Logiciels Libres.
-
 ## ⚙ Lancer l'application
 
 1.  **Cloner le projet Git :**
@@ -92,4 +88,7 @@ Distribué sous licence MIT. En soutien aux Logiciels Libres.
     `http://127.0.0.1:5000/` pour visualiser l'application dans votre navigateur.
 
 
+📄 Licence
+
+Distribué sous licence MIT. En soutien aux Logiciels Libres.
     
