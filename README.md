@@ -1,26 +1,65 @@
-# 🔧 Portail de Ressources - Flask
+🛠️ Le Garage Numérique - Portail de Ressources
 
-Ce projet est une application web construite avec **Flask** côté backend et **JavaScript Vanilla** côté frontend.
-Il permet de consulter des ressources classées par catégorie, avec distinction entre ressources téléchargeables et non téléchargeables.
+    Un catalogue de ressources numériques dédié à l'association Le Garage Numérique, qui milite depuis 2012 pour l'innovation sociale et l'usage des logiciels libres.
 
----
+💡 Le Contexte
 
-## 🧩 Fonctionnalités principales
+Le Garage Numérique avait besoin d'une plateforme centralisée pour partager ses outils pédagogiques. En accord avec les valeurs d'Éducation Populaire de l'association, ce portail a été conçu pour être léger, modulaire et facile à naviguer.
+🏗️ Architecture Technique
 
-* **📁 Chargement et parsing d’un fichier `ressources.json` :** Utilisation d'une fonction Python (dans `utils.py`) pour lire et interpréter les données des ressources.
-* **🎴 Affichage dynamique des ressources :** Génération et présentation des ressources sous forme d'objets Python appelés cartes via `index.html`.
-* **🧠 Filtrage et tri :** Possibilité de filtrer par catégorie ou trier par ordre alphabétique, fonctionnalité implémentée dans `sort.js`.
-* **🔍 Barre de recherche intégrée :** Permet aux utilisateurs de rechercher des ressources spécifiques `search.js`.
-* **🧭 Séparation claire :** Distinction visuelle entre les ressources qui peuvent être téléchargées et celles qui le peuvent pas.
-* **📡 Interface web fluide :** Interface utilisateur développée en HTML, JavaScript et CSS, avec l'utilisation du moteur de templating Jinja2 et du framework CSS Bulma.
+Ce projet utilise le pattern Application Factory, garantissant une application scalable et testable.
 
----
+    Application Factory (create_app) : Centralise la création de l'instance Flask et gère les environnements via un dictionnaire de configuration.
 
-## 🚀 Avancement
+    Modularité par Blueprints : Séparation stricte entre le portail (public) et l'interface admin (gestion), accessible via le préfixe /admin.
 
-* Le Design de l'interface utilisateur est en cours d'amélioration.
-* La fonctionnalité de Barre de recherche est en développement.
-* Aucun Test Unitaire n'a été implémenté pour le moment.
+    Filtres Jinja2 Personnalisés : Intégration d'un filtre slug pour générer des URLs propres et optimisées pour le SEO.
+
+    Gestion Sécurisée : Utilisation de python-dotenv pour isoler les variables sensibles (SECRET_KEY). 
+
+🛠 Stack Technique
+🚀 Fonctionnalités Clés
+
+    Recherche Dynamique : Filtrage en temps réel des ressources via JavaScript.
+
+    Interface Responsive : Design moderne incluant un Mode Sombre (Dark Mode).
+
+    Gestion Admin : Routes sécurisées pour l'administration des contenus.
+
+    Portabilité : Stockage des données structuré en JSON pour une légèreté maximale.
+
+🧪 Suite de Tests
+
+La fiabilité du code est assurée par une suite de tests complète :
+
+    test_admin_routes.py : Validation des accès et fonctions administratifs.
+
+    test_routes.py : Tests d'intégration des vues publiques.
+
+    test_fonctions.py : Tests unitaires de la logique métier.
+
+Exécuter les tests : pytest
+📥 Installation
+
+    Cloner le projet : git clone <url-du-repo>
+
+    Installer les dépendances : pip install -r requirements.txt
+
+    Configuration : Copier .env.example vers .env et remplir la SECRET_KEY.
+
+    Lancer : python app.py
+
+🧠 Expérience Collaborative (Équipe de 5)
+
+Ce projet a été développé en équipe, ce qui a permis de mettre en pratique :
+
+    GitFlow : Utilisation rigoureuse de branches et de Pull Requests pour éviter les conflits.
+
+    Communication Technique : Coordination sur l'architecture des Blueprints pour permettre un développement parallèle.
+
+📄 Licence
+
+Distribué sous licence MIT. En soutien aux Logiciels Libres.
 
 ## ⚙ Lancer l'application
 
